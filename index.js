@@ -37,13 +37,6 @@ const currentYear = currentTime.getFullYear();
     const currentMinutes = currentTime.getMinutes();
     const currentSecond = currentTime.getSeconds();
 
-// console.log(currentDay);
-// console.log(currentMonth);
-// console.log(currentYear);
-//     console.log(currentDate);
-//     console.log(currentHour);
-//     console.log(currentMinutes);
-    console.log(currentSecond);
 
 const day = document.querySelector('.name-week');
 const date = document.querySelector('.number-month');
@@ -71,3 +64,66 @@ const month = document.querySelector('.month');
      handHours.style.transform = `rotate(${changeHours}deg)`;
 
 }, 1000);
+
+// =======================timer===============================
+
+const seconds = document.querySelector('.seconds-timer');
+const minutes = document.querySelector('.minutes-timer');
+const hours = document.querySelector('.hours-timer');
+const buttonStart = document.querySelector('.button-start');
+const buttonStop = document.querySelector('.button-stop');
+const buttonReset = document.querySelector('.button-reset')
+    
+ let totalSeconds = 0;
+let totalMnutes = 0;
+let totalHours = 0;
+let timer;
+
+
+buttonStart.addEventListener('click', onStartTimer);
+
+
+function onStartTimer(event) {
+    if (event) {
+                   timer = setInterval(onStartTimer, 1000);
+        buttonStart.disabled = true;
+    }
+        totalSeconds++
+        if (totalSeconds >= 60) {
+            totalSeconds = 0;
+            totalMnutes++;
+            if (totalMnutes >= 60) {
+                totalMnutes = 0;
+                totalHours++;
+                if (totalHours >= 24) {
+                    totalHours = 0;
+                }
+            }
+        };
+
+        seconds.textContent = totalSeconds.toString().padStart(2, '0');
+        minutes.textContent = totalMnutes.toString().padStart(2, '0');
+        hours.textContent = totalHours.toString().padStart(2, '0');
+};
+
+
+buttonStop.addEventListener('click', (event) => {
+    if (event) {
+         buttonStart.disabled = false;
+        console.log('hello')
+        clearInterval(timer);
+    }
+  
+});
+
+
+buttonReset.addEventListener('click', () => {
+    seconds.textContent = '00';
+    minutes.textContent = '00';
+    hours.textContent = '00';
+
+    totalSeconds = 0;
+    totalMnutes = 0;
+    totalHours = 0;
+});
+
