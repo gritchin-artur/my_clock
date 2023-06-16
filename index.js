@@ -85,7 +85,7 @@ buttonStart.addEventListener('click', onStartTimer);
 
 function onStartTimer(event) {
     if (event) {
-                   timer = setInterval(onStartTimer, 1000);
+        timer = setInterval(onStartTimer, 1000);
         buttonStart.disabled = true;
     }
         totalSeconds++
@@ -110,7 +110,6 @@ function onStartTimer(event) {
 buttonStop.addEventListener('click', (event) => {
     if (event) {
          buttonStart.disabled = false;
-        console.log('hello')
         clearInterval(timer);
     }
   
